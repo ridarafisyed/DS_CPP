@@ -20,7 +20,7 @@ public:
 
     void enqueue(int item)
     {
-        if (size() <= MAX_LIMIT)
+        if (size() <= MAX_LIMIT && rear < MAX_LIMIT)
         {
             queue[rear] = item;
             rear = rear + 1;
@@ -64,15 +64,13 @@ public:
 
     int size()
     {
-        return rear - front + 1;
+        return rear - front;
     }
 
     void message(string str)
     {
         cout << str << endl;
     }
-
-    
 };
 
 int main()
