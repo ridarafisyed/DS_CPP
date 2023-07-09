@@ -4,8 +4,8 @@ using namespace std;
 
 const int MAX_SIZE = 10;
 
-class Stack
-{ // Last In First Out (LIFO
+class Stack // Last In First Out (LIFO)
+{
 private:
     int stack[MAX_SIZE];
     int topIndex;
@@ -21,7 +21,7 @@ public:
     }
     bool isFull()
     {
-        return topIndex == MAX_SIZE - 1;
+        return size() == MAX_SIZE;
     }
 
     int size()
@@ -31,21 +31,21 @@ public:
 
     void push(int item) // adding item in stack
     {
-        if (topIndex == MAX_SIZE - 1)
+        if (isFull)
         {
-            cout << "Stack is Full";
+            message("Stack is Full");
             return;
         };
         topIndex++;
         stack[topIndex] = item;
-        cout << "Item addin in stack";
+        message("Succuessfully added in stack");
         return;
     };
     int pop() // removing item from the stack and returning it
     {
         if (isEmpty())
         {
-            cout << "Stack is empty";
+            message("Stack is empty");
             return -1;
         }
         else
@@ -60,10 +60,15 @@ public:
     {
         if (isEmpty())
         {
-            cout << "Stack is empty";
+            message("Stack is empty");
         }
         else
             return stack[topIndex];
+    }
+
+    void message(string str)
+    {
+        cout << str << endl;
     }
 };
 
