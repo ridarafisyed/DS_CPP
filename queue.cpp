@@ -11,6 +11,11 @@ private:
     int front;
     int rear;
 
+    void message(string str)
+    {
+        cout << str << endl;
+    }
+
 public:
     Queue()
     {
@@ -23,11 +28,11 @@ public:
         if (size() <= MAX_LIMIT && rear < MAX_LIMIT)
         {
             queue[rear] = item;
-            rear = rear + 1;
+            rear++;
         }
         else
         {
-            message(" the queue is full");
+            message(" Queue is full");
         }
     }
 
@@ -35,26 +40,20 @@ public:
     {
         if (isEmpty())
         {
-            message("The Queue is already empty");
+            message("Queue is Empty");
             return -1;
         }
         else
         {
             int data = queue[front];
-            front = front + 1;
+            front++;
             return data;
         }
     }
 
     bool isEmpty()
     {
-        if (rear == -1)
-        {
-            message("Queue is Empty");
-            return true;
-        }
-        else
-            return false;
+        return rear == -1;
     }
 
     int peek()
@@ -65,11 +64,6 @@ public:
     int size()
     {
         return rear - front;
-    }
-
-    void message(string str)
-    {
-        cout << str << endl;
     }
 };
 
