@@ -1,3 +1,5 @@
+/* basic queue implimentation with array */
+
 #include <iostream>
 
 using namespace std;
@@ -19,14 +21,17 @@ private:
 public:
     Queue()
     {
-        front = -1;
-        rear = -1;
-    }
+        front = rear = -1;
+    }; // constructor to initialize the variables.
 
-    void enqueue(int item)
+    void en_queue(int item)
     {
         if (size() <= MAX_LIMIT && rear < MAX_LIMIT)
         {
+            if (front == -1)
+            {
+                front = 0;
+            }
             queue[rear] = item;
             rear++;
         }
@@ -36,9 +41,9 @@ public:
         }
     }
 
-    int dequeue()
+    int de_queue()
     {
-        if (isEmpty())
+        if (is_empty())
         {
             message("Queue is Empty");
             return -1;
@@ -51,7 +56,7 @@ public:
         }
     }
 
-    bool isEmpty()
+    bool is_empty()
     {
         return rear == -1;
     }
@@ -60,7 +65,24 @@ public:
     {
         return queue[front];
     }
-
+    void display()
+    {
+        int i;
+        if (is_empty())
+        {
+            message("The Queue is empty");
+        }
+        else
+        {
+            cout << "Front -> " << front << endl;
+            cout << "Items -> " << endl;
+            for (i = front; i != rear; i++)
+            {
+                cout << queue[i] << endl;
+            }
+            cout << "Rear -> " << rear << endl;
+        }
+    }
     int size()
     {
         return rear - front;
@@ -70,15 +92,16 @@ public:
 int main()
 {
     Queue q;
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
+    q.en_queue(10);
+    q.en_queue(20);
+    q.en_queue(30);
+    q.display();
 
     cout << "Size of queue: " << q.size() << endl; // Output: 3
 
     cout << "Top element: " << q.peek() << endl; // Output: 30
 
-    cout << "Popped element: " << q.dequeue() << endl; // Output: 30
+    cout << "Popped element: " << q.de_queue() << endl; // Output: 30
 
     cout << "Size of stack after popping: " << q.size() << endl; // Output: 2
 
